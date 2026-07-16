@@ -43,9 +43,17 @@ All carrier drivers below ship as **`^0.2`** with real vendor APIs (not scaffold
 | [UPS](https://github.com/mohamedhekal/shipbridge-ups) | `mohamedhekal/shipbridge-ups` | Global | REST OAuth2 |
 | [DHL Express](https://github.com/mohamedhekal/shipbridge-dhl) | `mohamedhekal/shipbridge-dhl` | Global | MyDHL API |
 | [Egypt Post](https://github.com/mohamedhekal/shipbridge-egyptpost) | `mohamedhekal/shipbridge-egyptpost` | Egypt | TrackTrace + partner gateway |
+| [MNG Kargo](https://github.com/mohamedhekal/shipbridge-mng) | `mohamedhekal/shipbridge-mng` | Turkey | ApiZone REST (DHL eCommerce TR) |
+| [HepsiJet](https://github.com/mohamedhekal/shipbridge-hepsijet) | `mohamedhekal/shipbridge-hepsijet` | Turkey | Integration REST |
+| [Yurtiçi Kargo](https://github.com/mohamedhekal/shipbridge-yurtici) | `mohamedhekal/shipbridge-yurtici` | Turkey | ShippingOrder SOAP |
+| [Aras Kargo](https://github.com/mohamedhekal/shipbridge-aras) | `mohamedhekal/shipbridge-aras` | Turkey | CustomerWS SOAP |
+| [Sürat Kargo](https://github.com/mohamedhekal/shipbridge-surat) | `mohamedhekal/shipbridge-surat` | Turkey | WebServices SOAP |
+| [PTT Kargo](https://github.com/mohamedhekal/shipbridge-ptt) | `mohamedhekal/shipbridge-ptt` | Turkey | PttVeriYukleme SOAP |
 
 ```bash
 composer require mohamedhekal/shipbridge-bosta:^0.2
+# Turkey example:
+composer require mohamedhekal/shipbridge-mng:^0.2
 ```
 
 ## Quick start

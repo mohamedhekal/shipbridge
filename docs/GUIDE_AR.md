@@ -84,9 +84,17 @@ ShipBridge::driver('fedex')->createShipment(...);
 | UPS | `shipbridge-ups` | عالمي | REST OAuth2 |
 | DHL Express | `shipbridge-dhl` | عالمي | MyDHL |
 | Egypt Post | `shipbridge-egyptpost` | مصر | تتبع رسمي + بوابة شريك |
+| MNG Kargo | `shipbridge-mng` | تركيا | ApiZone REST |
+| HepsiJet | `shipbridge-hepsijet` | تركيا | Integration REST |
+| Yurtiçi Kargo | `shipbridge-yurtici` | تركيا | SOAP |
+| Aras Kargo | `shipbridge-aras` | تركيا | SOAP |
+| Sürat Kargo | `shipbridge-surat` | تركيا | SOAP |
+| PTT Kargo | `shipbridge-ptt` | تركيا | SOAP |
 
 ```bash
 composer require mohamedhekal/shipbridge-bosta:^0.2
+# تركيا:
+composer require mohamedhekal/shipbridge-mng:^0.2
 ```
 
 ---

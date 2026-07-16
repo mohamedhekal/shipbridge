@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.2 — 2026-07-16
+
+### Changed
+
+- Register Turkey wave carriers (`mng`, `hepsijet`, `yurtici`, `aras`, `surat`, `ptt`) as real `^0.2` packages
+- Extend English README and Arabic guide with Turkish carrier table
+
 ## v0.1.1 — 2026-07-16
 
 ### Changed
