@@ -4,7 +4,7 @@
 
 ### Changed
 
-- Add marketing README assets under `docs/assets/` (hero, install, carriers, Turkey wave, statuses, …)
+- README shows a single marketing banner at the bottom (`docs/assets/banner.png`)
 
 ## v0.1.2 — 2026-07-16
 
