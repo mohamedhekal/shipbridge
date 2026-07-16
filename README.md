@@ -1,19 +1,36 @@
 # ShipBridge
 
+<p align="center">
+  <img src="docs/assets/hero-unified.png" alt="ShipBridge — Unified Laravel shipping abstraction" width="100%">
+</p>
 
 [![CI](https://github.com/mohamedhekal/shipbridge/actions/workflows/tests.yml/badge.svg)](https://github.com/mohamedhekal/shipbridge/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4.svg)](https://www.php.net/)
 [![Laravel](https://img.shields.io/badge/Laravel-11%2F12-FF2D20.svg)](https://laravel.com/)
+[![Packagist](https://img.shields.io/packagist/v/mohamedhekal/shipbridge.svg)](https://packagist.org/packages/mohamedhekal/shipbridge)
 
 **Search terms:** laravel, shipping, carriers, tracking, labels, returns, logistics, ecommerce, php, laravel-package, courier, fulfillment.
-
 
 Unified Laravel shipping abstraction: create, track, label, return, and exchange across carrier drivers with normalized statuses.
 
 **شرح عربي بسيط جدًا:** [docs/GUIDE_AR.md](docs/GUIDE_AR.md)
 
+---
+
+<p align="center">
+  <img src="docs/assets/why-shipbridge.png" alt="Why ShipBridge" width="100%">
+</p>
+
+<p align="center">
+  <img src="docs/assets/make-shipping-simple.png" alt="Make shipping simple in your Laravel apps" width="100%">
+</p>
+
 ## Installation
+
+<p align="center">
+  <img src="docs/assets/install-minutes.png" alt="Install ShipBridge in minutes" width="100%">
+</p>
 
 ```bash
 composer require mohamedhekal/shipbridge
@@ -24,12 +41,20 @@ Add the carrier you need (separate package per company):
 
 ```bash
 composer require mohamedhekal/shipbridge-bosta
-# or: shipbridge-aramex / shipbridge-fedex / …
+# or: shipbridge-aramex / shipbridge-fedex / shipbridge-mng / …
 ```
 
 ## Carrier packages
 
 All carrier drivers below ship as **`^0.2`** with real vendor APIs (not scaffolds).
+
+<p align="center">
+  <img src="docs/assets/carriers-grid.png" alt="Supported carriers" width="100%">
+</p>
+
+<p align="center">
+  <img src="docs/assets/turkey-wave.png" alt="Turkey wave — MNG, HepsiJet, Yurtiçi, Aras, Sürat, PTT" width="100%">
+</p>
 
 | Carrier | Package | Region | Integration |
 |---|---|---|---|
@@ -58,6 +83,10 @@ composer require mohamedhekal/shipbridge-mng:^0.2
 
 ## Quick start
 
+<p align="center">
+  <img src="docs/assets/developer-friendly.png" alt="Developer-friendly ShipBridge API" width="100%">
+</p>
+
 ```php
 use Hekal\ShipBridge\Facades\ShipBridge;
 use Hekal\ShipBridge\DTOs\Address;
@@ -77,9 +106,23 @@ $tracking = ShipBridge::driver('bosta')->track($shipment->trackingNumber);
 
 Default built-in driver is `fake` (in-memory). Use `http` for a generic JSON carrier, or install a carrier package above.
 
+## Features
+
+<p align="center">
+  <img src="docs/assets/overview-features.png" alt="ShipBridge features overview" width="100%">
+</p>
+
+<p align="center">
+  <img src="docs/assets/create-track-label.png" alt="Create, track, label, return, exchange" width="100%">
+</p>
+
 ## Returns & exchanges
 
 First-class methods—not afterthoughts:
+
+<p align="center">
+  <img src="docs/assets/returns-exchanges.png" alt="Returns and exchanges are first-class" width="100%">
+</p>
 
 ```php
 ShipBridge::createReturn(new ReturnShipmentRequest(...));
@@ -89,6 +132,16 @@ ShipBridge::createExchange(new ExchangeShipmentRequest(...));
 ## Status normalization
 
 Carrier strings (`OFD`, `shipped`, …) map to `ShipmentStatus` via `config/shipbridge.php` (`status_map` + `status_aliases`). Unknown values become `exception` rather than throwing, so webhooks stay resilient.
+
+<p align="center">
+  <img src="docs/assets/normalized-statuses.png" alt="Normalized shipment statuses" width="100%">
+</p>
+
+## Open source
+
+<p align="center">
+  <img src="docs/assets/open-source.png" alt="Open source shipping for Laravel" width="100%">
+</p>
 
 ## Limitations
 

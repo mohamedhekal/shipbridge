@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.3 — 2026-07-16
+
+### Changed
+
+- Add marketing README assets under `docs/assets/` (hero, install, carriers, Turkey wave, statuses, …)
+
 ## v0.1.2 — 2026-07-16
 
 ### Changed
