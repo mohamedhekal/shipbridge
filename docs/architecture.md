@@ -26,6 +26,6 @@ Return and exchange are separate driver methods. That forces adapters to map to 
 
 ## Trade-offs
 
-- **No Integrator dependency yet.** Laravel HTTP client is enough for the generic driver; resilient middleware can wrap custom drivers later without coupling this package to `hekal/integrator`.
+- **No Integrator dependency yet.** Laravel HTTP client is enough for the generic driver; resilient middleware can wrap custom drivers later without coupling this package to `mohamedhekal/integrator`.
 - **Unknown statuses → Exception.** Prefer soft-fail for webhook ingestion over hard failures on novel vendor codes.
 - **Fake driver is stateful per process.** Suitable for tests; not a multi-worker store.

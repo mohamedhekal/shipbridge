@@ -2,7 +2,7 @@
 
 ## Name
 
-**ShipBridge** (`hekal/shipbridge`)  
+**ShipBridge** (`mohamedhekal/shipbridge`)  
 Alternatives: `carriergate`, `labelkit`
 
 ## Vision
