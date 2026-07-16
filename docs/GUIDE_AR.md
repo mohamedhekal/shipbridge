@@ -98,3 +98,18 @@ ShipBridge::driver('fedex')->createShipment(...);
 1. لازم مفاتيح API من لوحة الشركة نفسها.
 2. الحالات (delivered / in_transit ...) بتتوحّد تلقائيًا عن طريق ShipBridge.
 3. للتطوير المحلي من غير API: استخدم درايفر `fake` المدمج في ShipBridge.
+
+
+## أنواع المفاتيح (مهم)
+
+مش كل شركة بنفس طريقة الدخول:
+
+| الشركة | نوع المفاتيح في `.env` |
+|---|---|
+| Bosta / Mylerz / Turbo / J&T / Egypt Post | `*_API_KEY` |
+| SMSA | `SMSA_PASSKEY` |
+| Aramex | `USERNAME` + `PASSWORD` + رقم الحساب + PIN |
+| FedEx / UPS | `CLIENT_ID` + `CLIENT_SECRET` (+ token اختياري) |
+| DHL | `USERNAME` + `PASSWORD` |
+
+التفاصيل الدقيقة لكل شركة موجودة في README الخاص بها وفي ملف `config/` داخل الحزمة.
