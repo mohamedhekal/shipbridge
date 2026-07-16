@@ -1,5 +1,5 @@
 {
-    "name": "mohamedmohamedhekal/shipbridge",
+    "name": "mohamedhekal/shipbridge",
     "description": "Unified Laravel shipping abstraction for create, track, label, return, and exchange across carriers",
     "type": "library",
     "license": "MIT",
@@ -69,9 +69,9 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "homepage": "https://github.com/mohamedmohamedhekal/shipbridge",
+    "homepage": "https://github.com/mohamedhekal/shipbridge",
     "support": {
-        "issues": "https://github.com/mohamedmohamedhekal/shipbridge/issues",
-        "source": "https://github.com/mohamedmohamedhekal/shipbridge"
+        "issues": "https://github.com/mohamedhekal/shipbridge/issues",
+        "source": "https://github.com/mohamedhekal/shipbridge"
     }
 }
