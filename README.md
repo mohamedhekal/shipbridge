@@ -11,12 +11,36 @@
 
 Unified Laravel shipping abstraction: create, track, label, return, and exchange across carrier drivers with normalized statuses.
 
+**شرح عربي بسيط جدًا:** [docs/GUIDE_AR.md](docs/GUIDE_AR.md)
+
 ## Installation
 
 ```bash
 composer require mohamedhekal/shipbridge
 php artisan vendor:publish --tag=shipbridge-config
 ```
+
+Add the carrier you need (separate package per company):
+
+```bash
+composer require mohamedhekal/shipbridge-bosta
+# or: shipbridge-aramex / shipbridge-fedex / …
+```
+
+## Carrier packages
+
+| Carrier | Package | Region |
+|---|---|---|
+| [Bosta](https://github.com/mohamedhekal/shipbridge-bosta) | `mohamedhekal/shipbridge-bosta` | Egypt |
+| [Aramex](https://github.com/mohamedhekal/shipbridge-aramex) | `mohamedhekal/shipbridge-aramex` | MENA / Global |
+| [Mylerz](https://github.com/mohamedhekal/shipbridge-mylerz) | `mohamedhekal/shipbridge-mylerz` | Egypt |
+| [Turbo](https://github.com/mohamedhekal/shipbridge-turbo) | `mohamedhekal/shipbridge-turbo` | Egypt |
+| [J&T Express](https://github.com/mohamedhekal/shipbridge-jtexpress) | `mohamedhekal/shipbridge-jtexpress` | Egypt / Asia |
+| [SMSA](https://github.com/mohamedhekal/shipbridge-smsa) | `mohamedhekal/shipbridge-smsa` | KSA / GCC |
+| [FedEx](https://github.com/mohamedhekal/shipbridge-fedex) | `mohamedhekal/shipbridge-fedex` | Global |
+| [UPS](https://github.com/mohamedhekal/shipbridge-ups) | `mohamedhekal/shipbridge-ups` | Global |
+| [DHL Express](https://github.com/mohamedhekal/shipbridge-dhl) | `mohamedhekal/shipbridge-dhl` | Global |
+| [Egypt Post](https://github.com/mohamedhekal/shipbridge-egyptpost) | `mohamedhekal/shipbridge-egyptpost` | Egypt |
 
 ## Quick start
 
@@ -26,24 +50,18 @@ use Hekal\ShipBridge\DTOs\Address;
 use Hekal\ShipBridge\DTOs\CreateShipmentRequest;
 use Hekal\ShipBridge\DTOs\Parcel;
 
-$shipment = ShipBridge::createShipment(new CreateShipmentRequest(
+$shipment = ShipBridge::driver('bosta')->createShipment(new CreateShipmentRequest(
     origin: new Address('Warehouse', '1 Industrial Rd', 'Cairo', 'EG'),
     destination: new Address('Customer', '12 Nile St', 'Giza', 'EG'),
     parcels: [new Parcel(weightKg: 1.2)],
     reference: 'ORD-42',
 ));
 
-$label = ShipBridge::label($shipment->id);
-$tracking = ShipBridge::track($shipment->trackingNumber);
+$label = ShipBridge::driver('bosta')->label($shipment->id);
+$tracking = ShipBridge::driver('bosta')->track($shipment->trackingNumber);
 ```
 
-Default driver is `fake` (in-memory). Point `SHIPBRIDGE_DRIVER=http` at a generic JSON carrier API, or register your own adapter:
-
-```php
-ShipBridge::extend('bosta', function ($app, array $config) {
-    return new BostaDriver($config);
-});
-```
+Default built-in driver is `fake` (in-memory). Use `http` for a generic JSON carrier, or install a carrier package above.
 
 ## Returns & exchanges
 
@@ -60,7 +78,7 @@ Carrier strings (`OFD`, `shipped`, …) map to `ShipmentStatus` via `config/ship
 
 ## Limitations (v0.1)
 
-- No bundled Aramex/Bosta/FedEx SDKs—implement `CarrierDriver` per vendor.
+- Carrier packages talk to a normalized JSON adapter shape; map vendor-specific quirks as you connect live credentials.
 - Labels are opaque bytes/URLs from the driver; no PDF layout engine.
 - Rate shopping and live pickup calendars are out of scope.
 
