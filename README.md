@@ -29,18 +29,24 @@ composer require mohamedhekal/shipbridge-bosta
 
 ## Carrier packages
 
-| Carrier | Package | Region |
-|---|---|---|
-| [Bosta](https://github.com/mohamedhekal/shipbridge-bosta) | `mohamedhekal/shipbridge-bosta` | Egypt |
-| [Aramex](https://github.com/mohamedhekal/shipbridge-aramex) | `mohamedhekal/shipbridge-aramex` | MENA / Global |
-| [Mylerz](https://github.com/mohamedhekal/shipbridge-mylerz) | `mohamedhekal/shipbridge-mylerz` | Egypt |
-| [Turbo](https://github.com/mohamedhekal/shipbridge-turbo) | `mohamedhekal/shipbridge-turbo` | Egypt |
-| [J&T Express](https://github.com/mohamedhekal/shipbridge-jtexpress) | `mohamedhekal/shipbridge-jtexpress` | Egypt / Asia |
-| [SMSA](https://github.com/mohamedhekal/shipbridge-smsa) | `mohamedhekal/shipbridge-smsa` | KSA / GCC |
-| [FedEx](https://github.com/mohamedhekal/shipbridge-fedex) | `mohamedhekal/shipbridge-fedex` | Global |
-| [UPS](https://github.com/mohamedhekal/shipbridge-ups) | `mohamedhekal/shipbridge-ups` | Global |
-| [DHL Express](https://github.com/mohamedhekal/shipbridge-dhl) | `mohamedhekal/shipbridge-dhl` | Global |
-| [Egypt Post](https://github.com/mohamedhekal/shipbridge-egyptpost) | `mohamedhekal/shipbridge-egyptpost` | Egypt |
+All carrier drivers below ship as **`^0.2`** with real vendor APIs (not scaffolds).
+
+| Carrier | Package | Region | Integration |
+|---|---|---|---|
+| [Bosta](https://github.com/mohamedhekal/shipbridge-bosta) | `mohamedhekal/shipbridge-bosta` | Egypt | Business API v2 |
+| [Aramex](https://github.com/mohamedhekal/shipbridge-aramex) | `mohamedhekal/shipbridge-aramex` | MENA / Global | Shipping SOAP V2 |
+| [Mylerz](https://github.com/mohamedhekal/shipbridge-mylerz) | `mohamedhekal/shipbridge-mylerz` | Egypt / MENA | Integration API |
+| [Turbo](https://github.com/mohamedhekal/shipbridge-turbo) | `mohamedhekal/shipbridge-turbo` | Egypt | External API |
+| [J&T Express](https://github.com/mohamedhekal/shipbridge-jtexpress) | `mohamedhekal/shipbridge-jtexpress` | Egypt | Open Platform |
+| [SMSA](https://github.com/mohamedhekal/shipbridge-smsa) | `mohamedhekal/shipbridge-smsa` | KSA / GCC | SECOM SOAP |
+| [FedEx](https://github.com/mohamedhekal/shipbridge-fedex) | `mohamedhekal/shipbridge-fedex` | Global | REST Ship/Track |
+| [UPS](https://github.com/mohamedhekal/shipbridge-ups) | `mohamedhekal/shipbridge-ups` | Global | REST OAuth2 |
+| [DHL Express](https://github.com/mohamedhekal/shipbridge-dhl) | `mohamedhekal/shipbridge-dhl` | Global | MyDHL API |
+| [Egypt Post](https://github.com/mohamedhekal/shipbridge-egyptpost) | `mohamedhekal/shipbridge-egyptpost` | Egypt | TrackTrace + partner gateway |
+
+```bash
+composer require mohamedhekal/shipbridge-bosta:^0.2
+```
 
 ## Quick start
 
@@ -76,11 +82,12 @@ ShipBridge::createExchange(new ExchangeShipmentRequest(...));
 
 Carrier strings (`OFD`, `shipped`, …) map to `ShipmentStatus` via `config/shipbridge.php` (`status_map` + `status_aliases`). Unknown values become `exception` rather than throwing, so webhooks stay resilient.
 
-## Limitations (v0.1)
+## Limitations
 
-- Carrier packages talk to a normalized JSON adapter shape; map vendor-specific quirks as you connect live credentials.
+- Each carrier still needs **live credentials** from that company (sandbox vs production differs).
 - Labels are opaque bytes/URLs from the driver; no PDF layout engine.
 - Rate shopping and live pickup calendars are out of scope.
+- Egypt Post has no public create API (Wassalha); create needs a contracted partner gateway — tracking works via official TrackTrace.
 
 ## Testing
 

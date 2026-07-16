@@ -70,20 +70,24 @@ ShipBridge::driver('fedex')->createShipment(...);
 
 ---
 
-## جدول الشركات المتاحة
+## جدول الشركات المتاحة (كلها `^0.2` — API حقيقي)
 
-| الشركة | الحزمة | المنطقة |
-|---|---|---|
-| Bosta | `shipbridge-bosta` | مصر |
-| Aramex | `shipbridge-aramex` | الشرق الأوسط / عالمي |
-| Mylerz | `shipbridge-mylerz` | مصر |
-| Turbo | `shipbridge-turbo` | مصر |
-| J&T Express | `shipbridge-jtexpress` | مصر / آسيا |
-| SMSA | `shipbridge-smsa` | السعودية / الخليج |
-| FedEx | `shipbridge-fedex` | عالمي |
-| UPS | `shipbridge-ups` | عالمي |
-| DHL Express | `shipbridge-dhl` | عالمي |
-| Egypt Post | `shipbridge-egyptpost` | مصر |
+| الشركة | الحزمة | المنطقة | نوع الربط |
+|---|---|---|---|
+| Bosta | `shipbridge-bosta` | مصر | Business API |
+| Aramex | `shipbridge-aramex` | الشرق الأوسط / عالمي | SOAP V2 |
+| Mylerz | `shipbridge-mylerz` | مصر / المنطقة | Integration API |
+| Turbo | `shipbridge-turbo` | مصر | External API |
+| J&T Express | `shipbridge-jtexpress` | مصر | Open Platform |
+| SMSA | `shipbridge-smsa` | السعودية / الخليج | SECOM SOAP |
+| FedEx | `shipbridge-fedex` | عالمي | REST Ship/Track |
+| UPS | `shipbridge-ups` | عالمي | REST OAuth2 |
+| DHL Express | `shipbridge-dhl` | عالمي | MyDHL |
+| Egypt Post | `shipbridge-egyptpost` | مصر | تتبع رسمي + بوابة شريك |
+
+```bash
+composer require mohamedhekal/shipbridge-bosta:^0.2
+```
 
 ---
 
@@ -98,7 +102,9 @@ ShipBridge::driver('fedex')->createShipment(...);
 1. لازم مفاتيح API من لوحة الشركة نفسها.
 2. الحالات (delivered / in_transit ...) بتتوحّد تلقائيًا عن طريق ShipBridge.
 3. للتطوير المحلي من غير API: استخدم درايفر `fake` المدمج في ShipBridge.
+4. مصر بوست: إنشاء الشحنات يحتاج بوابة شريك (`partner`) — التتبع شغال من TrackTrace الرسمي.
 
+---
 
 ## أنواع المفاتيح (مهم)
 
@@ -106,10 +112,14 @@ ShipBridge::driver('fedex')->createShipment(...);
 
 | الشركة | نوع المفاتيح في `.env` |
 |---|---|
-| Bosta / Mylerz / Turbo / J&T / Egypt Post | `*_API_KEY` |
+| Bosta | `BOSTA_API_KEY` |
+| Mylerz | `MYLERZ_USERNAME` + `MYLERZ_PASSWORD` |
+| Turbo | `TURBO_AUTHENTICATION_KEY` + `TURBO_MAIN_CLIENT_CODE` |
+| J&T | `API_ACCOUNT` + `PRIVATE_KEY` + `CUSTOMER_CODE` + `CUSTOMER_PWD` |
 | SMSA | `SMSA_PASSKEY` |
 | Aramex | `USERNAME` + `PASSWORD` + رقم الحساب + PIN |
-| FedEx / UPS | `CLIENT_ID` + `CLIENT_SECRET` (+ token اختياري) |
-| DHL | `USERNAME` + `PASSWORD` |
+| FedEx / UPS | `CLIENT_ID` + `CLIENT_SECRET` + رقم الحساب |
+| DHL | `USERNAME` + `PASSWORD` + رقم الحساب |
+| Egypt Post | تتبع بدون مفتاح / أو `EGYPTPOST_API_KEY` لوضع الشريك |
 
-التفاصيل الدقيقة لكل شركة موجودة في README الخاص بها وفي ملف `config/` داخل الحزمة.
+التفاصيل الدقيقة لكل شركة في README الخاص بها و`docs/GUIDE_AR.md` داخل الحزمة.
